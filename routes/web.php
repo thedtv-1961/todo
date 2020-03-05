@@ -16,3 +16,4 @@ Route::get('login', 'TodoController@login')->name('login');
 Route::post('login', 'TodoController@postLogin')->name('post.login');
 
 Route::get('my-todo', 'TodoController@myTodo')->name('my-todo');
+Route::get('todos/{id}', 'TodoController@show')->name('todos.show');

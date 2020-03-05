@@ -16,7 +16,9 @@
             <td>{{ $todo->name }}</td>
             <td>{{ $todo->created_at }}</td>
             <td>{{ $todo->user->name }}</td>
-            <td></td>
+            <td>
+                <a href="{{ route('todos.show', $todo->id) }}">View</a>
+            </td>
         </tr>
     @endforeach
 </table>

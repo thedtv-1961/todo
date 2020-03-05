@@ -64,6 +64,17 @@ class TodoController extends Controller
         return view('todo.my_todo', compact('user', 'todos'));
     }
 
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout()
+    {
+        auth()->logout();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -93,7 +104,15 @@ class TodoController extends Controller
      */
     public function show(int $id)
     {
-        //
+        $user = auth()->user();
+        $todo = Todo::whereKey($id)->firstOrFail();
+
+        if($user->can('view', $todo)) {
+            return view('todo.show', compact('todo'));
+        }
+        else {
+            echo 'Sorry, U don\'t have any permission!';
+        }
     }
 
     /**
